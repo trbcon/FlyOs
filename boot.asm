@@ -224,24 +224,24 @@ about:
 	jz main
 
 off_pc:
-	MOV     AH,0Dh
-	INT     21h
-	MOV     AX,5300h
-	XOR     BX,BX
-	INT     15h
-	JB      Ext
-	MOV     AX,5301h
-	XOR     BX,BX
-	INT     15h
-	MOV     AX,5308h
-	MOV     BX,0FFFFh
-	MOV     CX,0001h
-	INT     15h
-	MOV     AX,5307h
-	MOV     BX,0001h
-	MOV     CX,0003h
-	INT     15h
-	Ext:INT     20h
+	mov     ah,0Dh
+	int     21h
+	mov     ax,5300h
+	xor     bx,bx
+	int     15h
+	jb      Ext
+	mov     ax,5301h
+	xor     bx,bx
+	int     15h
+	mov     ax,5308h
+	mov     bx,0FFFFh
+	mov     cx,0001h
+	int     15h
+	mov     ax,5307h
+	mov     bx,0001h
+	mov     cx,0003h
+	int     15h
+	Ext:int     20h
 	
 helpmsge:
 	mov ax, 0002h  
