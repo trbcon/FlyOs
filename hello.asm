@@ -2,18 +2,18 @@ start:
     mov ax,0002h    
     int 10h
         xor dx,dx
-        call SetCu   
+        call SetCursorPos   
                                  
         mov bp, msg
-        mov cx, 24
-        call Pri  
+        mov cx, 4
+        call PrintMes 
          
         mov dl,0
         mov dh,1
-        call SetCu  
+        call SetCursorPos
         mov bp, helper
-        mov cx,77
-        call Pri     
+        mov cx,54
+        call PrintMes     
          
 Option:                    
         mov ah,10h
@@ -37,20 +37,20 @@ Load_text:
         int 13h
         xor dl,dl
         mov dh,3
-        call SetCu
+        call SetCursorPos
         mov bp, string
         mov cx, 256
-        call Pri
+        call PrintMes
         mov si,255
         add dl, 15          
         add dh,3
-        call SetCu
+        call SetCursorPos
         jmp cmd
          
 Print_text:
         xor dx,dx
         add dh,3
-        call SetCu   
+        call SetCursorPos  
         mov si,0            
 cmd: 
     mov ah,10h
@@ -72,13 +72,13 @@ cmd:
         mov cx,1
         int 10h
         add dl,1
-        call SetCu
+        call SetCursorPos
     jmp cmd
          
 Caret:  
     add dh,1
     xor dl,dl
-        call SetCu
+        call SetCursorPos
         jmp cmd
          
 Save_text:  
@@ -104,7 +104,7 @@ Delete_sym:
     jmp Cursor_Pos
 Delete:     sub dl,1            
 Cursor_Pos: 
-    call SetCu
+    call SetCursorPos
     mov al,20h          
     mov [string + si],al 
     mov ah,09h
@@ -116,17 +116,4 @@ Cursor_Pos:
         dec si              
     jmp cmd
 Esc:     
-        jmp input
-         
-  Pri:               
-        mov bl,04h          
-        mov ax,1301h
-        int 10h
-        ret
-        SetCu:        
-			mov ah,2h
-			xor bh,bh
-			int 10h 
-			ret
-        msg db 'This is a text writer...',0 
-        helper db 'To print text - press Enter, to load text - press F1, to save text - press F2',0
+    jmp input

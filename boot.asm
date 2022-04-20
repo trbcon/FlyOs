@@ -43,7 +43,7 @@ message:
 		call SetCursorPos
 			mov bp, msge
 			mov cx, 29
-			mov bl,04h                  
+			mov bl,0Fh                  
 			xor bh,bh
 			mov ax,1301h
 			int 10h
@@ -200,7 +200,7 @@ main:
 			ret
 
 PrintMes:                  
-        mov bl,04h        
+        mov bl,0Fh        
         mov ax,1301h
         int 10h
         ret     
